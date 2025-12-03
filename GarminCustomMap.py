@@ -450,9 +450,9 @@ class GarminCustomMap:
 
                     # Create VRT
                     reproj_file = gdal.AutoCreateWarpedVRT(input_dataset, in_CRS, out_CRS)
-                    reproj_file.GetRasterBand(1).Fill(255)
-                    reproj_file.GetRasterBand(2).Fill(255)
-                    reproj_file.GetRasterBand(3).Fill(255)
+#                    reproj_file.GetRasterBand(1).Fill(255)           # The dataset returned by AutoCreateWarpedVRT is readonly and should not be written to
+#                    reproj_file.GetRasterBand(2).Fill(255)
+#                    reproj_file.GetRasterBand(3).Fill(255)
 
                     # Reproject
                     gdal.ReprojectImage(input_dataset, reproj_file, in_CRS, out_CRS)
