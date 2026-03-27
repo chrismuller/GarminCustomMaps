@@ -54,6 +54,7 @@ COMPILED_RESOURCE_FILES = resources.py
 
 PEP8EXCLUDE=pydev,resources.py,conf.py,third_party,ui
 
+RCC=/lib/qt6/libexec/rcc
 
 #################################################
 # Normally you would not need to edit below here
@@ -72,7 +73,8 @@ default: compile
 compile: $(COMPILED_RESOURCE_FILES)
 
 %.py : %.qrc $(RESOURCES_SRC)
-	pyrcc4 -o $*.py  $<
+	$(RCC) -g python $< | sed 's/from PySide6/from qgis.PyQt/' > $*.py
+
 
 %.qm : %.ts
 	$(LRELEASE) $<
